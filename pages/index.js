@@ -1,9 +1,7 @@
-import Head from 'next/head'
 import Card from '../components/Card'
-import NavBar from '../components/NavBar'
-import Footer from '../components/Footer'
+
 export async function getStaticProps() {
-  const maxPokemons = 251
+  const maxPokemons = 255
   const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/'
   const res = await fetch(`${BASE_URL}/?limit=${maxPokemons}`)
   const data = await res.json()
@@ -18,13 +16,13 @@ export async function getStaticProps() {
 export default function Home({ pokemons }) {
   return (
     <>
-    <div className='bg-slate-800 h-auto'>
-      <div className='ml-5 mr-5 grid grid-cols-1 gap-1 sm:grid-cols-5 sm:grid-rows-5 sm:gap-2 flex content-center justify-items-center items-center'>
-        {pokemons.map((pokemon) => (
-          <Card key={pokemon.id} pokemon={pokemon} />
+      <div className='bg-slate-800 h-auto'>
+        <div className='ml-5 mr-5 grid grid-cols-1 gap-1 flex content-center justify-items-center items-center sm:grid-cols-5 sm:grid-rows-5 sm:gap-4'>
+          {pokemons.map((pokemon) => (
+            <Card key={pokemon.id} pokemon={pokemon} />
           ))}
+        </div>
       </div>
-          </div>
     </>
   );
 }
